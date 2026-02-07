@@ -1,1 +1,3 @@
-"# chitchat" 
+ChitChat is a social networking and messaging web application designed for users to connect and communicate with their friends. Users can register, verify their email using a token, log in securely, and access a personalized dashboard. From the dashboard, they can create posts, view recent updates, and engage in real-time chat.
+
+The application is built using Node.js, Express, EJS, MySQL, and Socket.io, with features such as session-based authentication, form validation, and a responsive UI. ChitChat demonstrates full-stack development skills including backend APIs, database integration, authentication flow, and dynamic front-end rendering.
