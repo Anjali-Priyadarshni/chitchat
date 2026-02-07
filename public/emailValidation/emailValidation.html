@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+    <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+
+
+<link rel="stylesheet" href="emailValidation/emailValidation.css">
+
+<script src="emailValidation/activation.js"></script>
+
+</head>
+
+<body>
+
+  <div class="login-container">
+    <h2>Validate User</h2>
+    <p id="error" style="color: red;text-align: center;"></p>
+    <form action="/token" method="POST">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter email" required>
+      </div>
+
+      <div class="form-group">
+        <label>Token</label>
+        <input type="password" name="token" id="token" placeholder="Enter Token" required>
+      </div>
+
+      <button type="submit" class="login-btn full-width">validateToken</button>
+    </form>
+
+    <div class="extra-links">
+      <p>Don't have an account? <a href="../registration/registration.html">Register</a></p>
+      <p><a href="../home.html">Back to Home</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

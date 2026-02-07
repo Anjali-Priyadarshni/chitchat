@@ -1,0 +1,202 @@
+<html>
+    <head>
+     <meta charset="UTF-8">
+     <title>User Dashboard</title>
+     <style>
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f6f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Header ===== */
+header {
+  background-color: #1a2030;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+}
+
+.login-btn {
+  background: #ffffff;
+  color: #4e73df;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #e2e6ff;
+}
+
+/* ===== Dashboard ===== */
+.dashboard-container {
+  flex: 1;
+  /* max-width: 800px; */
+  margin: 10px;
+  background: #121010;
+  padding: 75px 80px;
+  border-radius: 30px;
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.08); */
+}
+
+.dashboard-container h2 {
+  margin-top: 0;
+  color:#f4f6f9
+}
+
+.post-box textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+  font-size: 14px;
+}
+
+.post-btn {
+  margin-top: 10px;
+  background: #1cc869;
+  color: white;
+  border: none;
+  padding: 7px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.post-btn:hover {
+  background: #17a673;
+}
+
+/* ===== Posts ===== */
+#posts {
+  margin-top: 20px;
+}
+
+.post {
+  background: #f8f9fc;
+  padding: 12px 14px;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  border-left: 4px solid #4e73df;
+}
+
+.post p {
+  margin: 0 0 5px;
+}
+
+.post small {
+  color: #666;
+  font-size: 12px;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #343a40;
+  color: #ccc;
+  text-align: center;
+  /* padding: 200px 200px 0px 200px; */
+  font-size: 13px;
+  position: sticky;
+  bottom: 0;
+}
+
+     </style>
+        <script>
+    function addPost() {
+      const text = document.getElementById('postText').value.trim();
+      if (text === '') return;
+
+      const postDiv = document.createElement('div');
+      postDiv.className = 'post';
+
+      const date = new Date().toLocaleString();
+
+      postDiv.innerHTML = `
+        <p>${text}</p>
+        <small>Posted on ${date}</small>
+      `;
+
+      document.getElementById('posts').prepend(postDiv);
+      //document.getElementById('postText').value = '';
+    }
+  </script>
+    </head>
+    <body>
+  <header>
+    <h1>welcome <%= username %> to chitchat Application</h1>
+
+    <p id = "servermsg"></p>
+
+   
+    <div class="btn-group">
+      <form action="/logout" method="post">
+          <button class="login-btn">Logout</button>
+      </form>
+       <form action="/chat" method="post">
+          <button class="login-btn">Chat</button>
+      </form>
+      
+    </div>
+  </header>
+
+  <!-- Dashboard -->
+<div class="dashboard-container">
+    <h2>What's on your mind?</h2>
+
+    <div class="post-box">
+      <form action="/post" method="POST">
+        <textarea id="postText" name="msg" placeholder="Write something..."></textarea>
+      <!-- <button class="post-btn" onclick="addPost()">Post</button> -->
+        <button class="post-btn" >Post</button><br><br> 
+
+      </form>
+
+       <div id="posts">
+        <% posts.forEach(abc => { %>
+        <div class="post">
+       <p><%= abc.post %></p>
+       <small>Posted on <%= new Date(abc.created_time).toLocaleString() %></small>
+      </div>
+  
+      <% }) %>
+      </div>
+
+   
+      
+</div>
+
+</div>
+<footer>
+ © 2026 ChitChat Application | Built by Anjali Priyadarshni
+</footer>
+
+    </body>
+</html>
